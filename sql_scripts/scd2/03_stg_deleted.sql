@@ -1,0 +1,41 @@
+ CREATE table stg_terminals_del as 
+            select 
+                t1.terminal_id,
+                t1.terminal_type,
+                t1.terminal_city,
+                t1.terminal_address
+            from v_dwh_dim_terminals_his t1
+            left join dwh_dim_terminals t2
+            on t1.terminal_id = t2.terminal_id
+            where t2.terminal_id is null ;
+ CREATE table stg_cards_del as 
+            select 
+                t1.card_num,
+                t1.account
+            from v_dwh_dim_cards_his t1
+            left join dwh_dim_cards t2
+            on t1.card_num = t2.card_num
+            where t2.card_num is null ;
+ CREATE table stg_accounts_del as 
+            select 
+                t1.account,
+                t1.valid_to,
+                t1.client
+            from v_dwh_dim_accounts_his t1
+            left join dwh_dim_accounts t2
+            on t1.account = t2.account
+            where t2.account is null ;
+ CREATE table stg_clients_del as 
+            select 
+                t1.client_id,
+                t1.last_name,
+                t1.first_name,
+                t1.patronymic,
+                t1.date_of_birth,
+                t1.passport_num,
+                t1.passport_valid_to,
+                t1.phone
+            from v_dwh_dim_clients_his t1
+            left join dwh_dim_clients t2
+            on t1.client_id = t2.client_id
+            where t2.client_id is null ;
